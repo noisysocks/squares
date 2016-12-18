@@ -21,6 +21,7 @@ body {
     position: absolute;
 }
 
+.color-0  { background-color: #231F20; }
 .color-1  { background-color: #AAE0FA; }
 .color-2  { background-color: #01ABCE; }
 .color-3  { background-color: #D8DF20; }

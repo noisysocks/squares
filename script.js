@@ -27,36 +27,70 @@ function makeSquare(col, row) {
     var square = document.createElement('div');
     square.classList.add('square');
 
-    square.setAttribute('data-col', col);
-    square.setAttribute('data-row', row);
+    square.id = col + ',' + row;
+
     square.style.left = (col * SQUARE_SIZE) + 'px';
     square.style.top = (row * SQUARE_SIZE) + 'px';
     square.style.width = SQUARE_SIZE + 'px';
     square.style.height = SQUARE_SIZE + 'px';
 
-    var colorNum = Math.ceil(Math.random() * 11);
-    square.setAttribute('data-color', colorNum);
-    square.classList.add('color-' + colorNum);
+    square.setAttribute('data-color', 0);
+    square.classList.add('color-0');
 
     container.appendChild(square);
 }
 
 function onClick(e) {
     if (e.target.classList.contains('square')) {
-        var colorNum = +e.target.getAttribute('data-color');
+        var square = e.target;
 
-        e.target.classList.remove('color-' + colorNum);
+        var colorNum = +square.getAttribute('data-color');
 
-        if (colorNum === 11) {
-            colorNum = 1;
+        if (colorNum) {
+            square.classList.remove('color-' + colorNum);
+
+            if (colorNum === 11) {
+                colorNum = 1;
+            } else {
+                colorNum += 1;
+            }
         } else {
-            colorNum += 1;
+            colorNum = Math.ceil(Math.random() * 11);
         }
 
-        e.target.setAttribute('data-color', colorNum);
-        e.target.classList.add('color-' + colorNum);
+        square.setAttribute('data-color', colorNum);
+        square.classList.add('color-' + colorNum);
+
+        firebase.database().ref('squares/' + square.id).set({
+            color: colorNum,
+        });
     }
 }
+
+function onData(snapshot) {
+    console.log(snapshot.key, snapshot.val().color);
+
+    var square = document.getElementById(snapshot.key);
+
+    var colorNum = +square.getAttribute('data-color');
+    square.classList.remove('color-' + colorNum);
+
+    var newColorNum = snapshot.val().color;
+    square.setAttribute('data-color', newColorNum);
+    square.classList.add('color-' + newColorNum);
+}
+
+firebase.initializeApp({
+    apiKey: 'AIzaSyDWTJ9QAbhFAIPEtpuH8IcVbbJad-EAYUw',
+    authDomain: 'homepage-9c7e9.firebaseapp.com',
+    databaseURL: 'https://homepage-9c7e9.firebaseio.com',
+    storageBucket: 'homepage-9c7e9.appspot.com',
+    messagingSenderId: '534583644053'
+});
+
+var squaresRef = firebase.database().ref('squares');
+squaresRef.on('child_added', onData);
+squaresRef.on('child_changed', onData);
 
 setupSquares();
 document.addEventListener('click', onClick);
