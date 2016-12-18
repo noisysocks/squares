@@ -25,7 +25,7 @@ function setupSquares() {
 
 function makeSquare(col, row) {
     var square = document.createElement('div');
-    square.classList.add('square');
+    square.className = 'square';
 
     square.id = col + ',' + row;
 
@@ -34,50 +34,34 @@ function makeSquare(col, row) {
     square.style.width = SQUARE_SIZE + 'px';
     square.style.height = SQUARE_SIZE + 'px';
 
-    square.setAttribute('data-color', 0);
-    square.classList.add('color-0');
-
     container.appendChild(square);
 }
 
 function onClick(e) {
-    if (e.target.classList.contains('square')) {
-        var square = e.target;
+    var square = e.target;
 
-        var colorNum = +square.getAttribute('data-color');
+    if (square.classList.contains('square')) {
+        var colorNum;
 
-        if (colorNum) {
-            square.classList.remove('color-' + colorNum);
-
-            if (colorNum === 11) {
-                colorNum = 1;
-            } else {
-                colorNum += 1;
-            }
+        if (square.hasAttribute('data-color')) {
+            colorNum = +square.getAttribute('data-color');
+            colorNum = (colorNum + 1) % 12;
+            square.setAttribute('data-color', colorNum);
         } else {
             colorNum = Math.ceil(Math.random() * 11);
         }
 
-        square.setAttribute('data-color', colorNum);
-        square.classList.add('color-' + colorNum);
-
         firebase.database().ref('squares/' + square.id).set({
-            color: colorNum,
+            color: colorNum
         });
     }
 }
 
 function onData(snapshot) {
-    console.log(snapshot.key, snapshot.val().color);
-
     var square = document.getElementById(snapshot.key);
 
-    var colorNum = +square.getAttribute('data-color');
-    square.classList.remove('color-' + colorNum);
-
-    var newColorNum = snapshot.val().color;
-    square.setAttribute('data-color', newColorNum);
-    square.classList.add('color-' + newColorNum);
+    var colorNum = snapshot.val().color;
+    square.setAttribute('data-color', colorNum);
 }
 
 firebase.initializeApp({

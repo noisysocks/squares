@@ -18,21 +18,23 @@ body {
 }
 
 .square {
+    background-color: #231F20;
     position: absolute;
+    transition: background-color 0.2s;
 }
 
-.color-0  { background-color: #231F20; }
-.color-1  { background-color: #AAE0FA; }
-.color-2  { background-color: #01ABCE; }
-.color-3  { background-color: #D8DF20; }
-.color-4  { background-color: #71BF45; }
-.color-5  { background-color: #FFCB08; }
-.color-6  { background-color: #F7941D; }
-.color-7  { background-color: #F15922; }
-.color-8  { background-color: #ED018C; }
-.color-9  { background-color: #D41F4E; }
-.color-10 { background-color: #AC54A0; }
-.color-11 { background-color: #5C2E91; }
+.square[data-color="0"]  { background-color: #231F20; }
+.square[data-color="1"]  { background-color: #AAE0FA; }
+.square[data-color="2"]  { background-color: #01ABCE; }
+.square[data-color="3"]  { background-color: #D8DF20; }
+.square[data-color="4"]  { background-color: #71BF45; }
+.square[data-color="5"]  { background-color: #FFCB08; }
+.square[data-color="6"]  { background-color: #F7941D; }
+.square[data-color="7"]  { background-color: #F15922; }
+.square[data-color="8"]  { background-color: #ED018C; }
+.square[data-color="9"]  { background-color: #D41F4E; }
+.square[data-color="10"] { background-color: #AC54A0; }
+.square[data-color="11"] { background-color: #5C2E91; }
 
 .message {
     align-items: center;
@@ -52,7 +54,7 @@ body {
     font-size: 3em;
 }
 
-.icon, .icon svg {
+.icon svg {
     height: 56px;
     width: 56px;
 }
