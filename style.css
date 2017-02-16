@@ -5,9 +5,6 @@
 }
 
 body {
-    color: #231F20;
-    fill: #231F20;
-    font-family: 'Merriweather', serif;
     overflow: hidden;
 }
 
@@ -35,26 +32,3 @@ body {
 .square[data-color="9"]  { background-color: #D41F4E; }
 .square[data-color="10"] { background-color: #AC54A0; }
 .square[data-color="11"] { background-color: #5C2E91; }
-
-.message {
-    align-items: center;
-    background: #fff;
-    display: flex;
-    flex-direction: column;
-    height: 250px;
-    justify-content: center;
-    left: calc(50% - 275px);
-    padding: 10px;
-    position: absolute;
-    top: calc(50% - 125px);
-    width: 550px;
-}
-
-.message h1 {
-    font-size: 3em;
-}
-
-.icon svg {
-    height: 56px;
-    width: 56px;
-}

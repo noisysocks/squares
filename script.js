@@ -7,7 +7,7 @@ var startMouseX = null;
 var startMouseY = null;
 
 function setupSquares() {
-    for (var gen = 3; gen <= 16; gen++) {
+    for (var gen = 0; gen <= 16; gen++) {
         for (var col = -gen; col <= gen; col++) {
             makeSquare(col, -gen);
         }
