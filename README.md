@@ -1,4 +1,4 @@
-# http://noisysocks.github.io/curvy-pong/
+# http://noisysocks.github.io/squares/
 
 ![screenshot](http://i.imgur.com/Ky5j1Hc.png)
 
