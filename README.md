@@ -1,5 +1,9 @@
 # http://noisysocks.com/squares/
 
-A kind of collaborative drawing web page, only that you're limited to colouring in squares. Uses Firebase to persist the 'drawings' in real-time.
+![screenshot](http://i.imgur.com/Ky5j1Hc.png)
 
-I put this together one night when I was bored. Enjoy!
+A web page made up of squares that can be coloured in. The 'drawings' that you make by colouring in squares are persisted and viewable (in real-time!) by anyone else that visits the web page. Think of it all as a kind of crappy, colourful, communal whiteboard.
+
+I put this together one night when I was bored. It uses Firebase to persist the squares and make everyting update in real-time. Enjoy!
+
+❤️
